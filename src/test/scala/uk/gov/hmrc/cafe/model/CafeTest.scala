@@ -49,10 +49,25 @@ class CafeTest extends JUnitSuite {
 
     assertThat(calculator.calculateStandard(cheeseSandwichOrder), is(2.00));
   }
-  
-   @Test def steakSandwichOrderTest() {
+
+  @Test def steakSandwichOrderTest() {
     val steakSandwichOrder = List[Item](new Drink("Steak Sandwich", 4.50, ItemType.HOT))
 
     assertThat(calculator.calculateStandard(steakSandwichOrder), is(4.50));
   }
+
+  @Test def allFoodOrderTest() {
+
+    val allFoodOrder = List[Item](new Drink("Cheese Sandwich", 2.00, ItemType.COLD),
+      new Food("Steak Sandwich", 4.5, ItemType.HOT))
+
+    assertThat(calculator.calculateStandard(allFoodOrder), is(6.50));
+  }
+
+  @Test def allFoodOrderTest() {
+    val allOrder = List[Item](new Drink("Cola", .5, ItemType.COLD),
+      new Food("Steak Sandwich", 4.5, ItemType.HOT), new Food("Cheese Sandwich", 2.0, ItemType.COLD), new Drink("Coffee", 1.00, ItemType.HOT))
+    assertThat(calculator.calculateStandard(allOrder), is(8.00));
+  }
+
 }
