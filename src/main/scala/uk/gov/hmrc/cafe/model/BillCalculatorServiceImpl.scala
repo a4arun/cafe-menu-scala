@@ -60,7 +60,16 @@ class BillCalculatorServiceImpl extends BillCalulatorService {
 
     var totalBill: Double = standardBill + standardBill * serviceChargeRate;
 
-    return totalBill
+    if (totalServiceCharge >= 20) {
+
+      return standardBill + 20;
+    } else {
+
+      var totalBill: Double = standardBill + standardBill * serviceChargeRate;
+
+      return totalBill
+
+    }
 
   }
 
