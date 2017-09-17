@@ -1,4 +1,10 @@
-package main.scala.uk.gov.hmrc.cafe.model
+package uk.gov.hmrc.cafetest.model
+
+import main.scala.uk.gov.hmrc.cafe.model.Item
+import main.scala.uk.gov.hmrc.cafe.model.Drink
+import main.scala.uk.gov.hmrc.cafe.model.BillCalulatorService
+import main.scala.uk.gov.hmrc.cafe.model.Food
+import main.scala.uk.gov.hmrc.cafe.model.ItemType
 
 class BillCalculatorServiceImpl extends BillCalulatorService {
 
@@ -23,6 +29,21 @@ class BillCalculatorServiceImpl extends BillCalulatorService {
     }
 
     return onlyDrinks;
+
+  }
+
+  def addServiceCharge(order: List[Item]): Double = {
+
+    var standardBill: Double = calculateStandard(order)
+
+    var serviceChargeRate: Double = 0;
+    if (!containsDrinkOnly(order)) serviceChargeRate = .1;
+
+    var totalServiceCharge: Double = standardBill * serviceChargeRate
+
+    var totalBill: Double = standardBill + standardBill * serviceChargeRate;
+
+    return totalBill
 
   }
 

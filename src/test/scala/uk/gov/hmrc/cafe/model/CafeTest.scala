@@ -70,4 +70,10 @@ class CafeTest extends JUnitSuite {
     assertThat(calculator.calculateStandard(allOrder), is(8.00));
   }
 
+  @Test def noServiceChargeAppliedonDrinkMenuTest() {
+    val allOrder = List[Item](new Drink("Cola", .5, ItemType.COLD),
+      new Drink("Coffee", 1.00, ItemType.HOT))
+
+    assertThat(calculator.addServiceCharge(allOrder), is(1.50));
+  }
 }
