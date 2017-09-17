@@ -28,21 +28,25 @@ class CafeTest extends JUnitSuite {
     val colaOrder = List[Item](new Drink("Cola", .5, ItemType.COLD))
 
     assertThat(calculator.calculateStandard(colaOrder), is(0.5));
-  }   
-  
-  
+  }
+
   @Test def cofeeOrderTest() {
     val coffeeOrder = List[Item](new Drink("Coffee", 1.00, ItemType.HOT))
 
     assertThat(calculator.calculateStandard(coffeeOrder), is(1.00));
   }
-  
-   @Test def colaAndCoffeOrderTest() {
-   
-    val colaAndCoffeOrder = List[Item] ( new Drink("Cola",.5,ItemType.COLD)  ,
-                              new Food("Coffee",1.00,ItemType.HOT) 
-    )
+
+  @Test def colaAndCoffeOrderTest() {
+
+    val colaAndCoffeOrder = List[Item](new Drink("Cola", .5, ItemType.COLD),
+      new Food("Coffee", 1.00, ItemType.HOT))
 
     assertThat(calculator.calculateStandard(colaAndCoffeOrder), is(1.50));
+  }
+
+  @Test def cheeseSandwichOrderTest() {
+    val cheeseSandwichOrder = List[Item](new Drink("Cheese Sandwich", 2.00, ItemType.COLD))
+
+    assertThat(calculator.calculateStandard(cheeseSandwichOrder), is(2.00));
   }
 }
