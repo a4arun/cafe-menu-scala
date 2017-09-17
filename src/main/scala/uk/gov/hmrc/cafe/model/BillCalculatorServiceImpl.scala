@@ -32,12 +32,29 @@ class BillCalculatorServiceImpl extends BillCalulatorService {
 
   }
 
+  def containsHotFood(order: List[Item]): Boolean = {
+
+    var hotFood: Boolean = false;
+
+    order.foreach { item =>
+      {
+        if (item.isInstanceOf[Food] && item.itemType == ItemType.HOT) {
+          hotFood = true
+        }
+      }
+    }
+
+    return hotFood;
+
+  }
+
   def addServiceCharge(order: List[Item]): Double = {
 
     var standardBill: Double = calculateStandard(order)
 
     var serviceChargeRate: Double = 0;
     if (!containsDrinkOnly(order)) serviceChargeRate = .1;
+    if (containsHotFood(order)) serviceChargeRate = .2;
 
     var totalServiceCharge: Double = standardBill * serviceChargeRate
 
